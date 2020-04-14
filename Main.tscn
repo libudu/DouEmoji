@@ -1,0 +1,147 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://font/DefaultDroid45.tres" type="DynamicFont" id=1]
+[ext_resource path="res://font/DroidSansFallback.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://font/DefaultDroid18.tres" type="DynamicFont" id=3]
+[ext_resource path="res://script/PicGrid.gd" type="Script" id=7]
+[ext_resource path="res://Main.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 0 )
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_blend = true
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.662745, 0.662745, 0.662745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Control" parent="."]
+anchor_right = 1.0
+margin_bottom = 238.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="Title"]
+anchor_right = 1.0
+margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTitle" type="RichTextLabel" parent="Title"]
+anchor_right = 1.0
+margin_left = 343.602
+margin_top = -17.0
+margin_right = -516.398
+margin_bottom = 161.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center][rainbow freq=0.4][wave amp=120 freq=4]“ 逗 图 ”
+[/wave][/rainbow][/center]
+"
+text = "“ 逗 图 ”
+
+"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SubTitle" type="RichTextLabel" parent="Title"]
+anchor_right = 1.0
+margin_left = 535.871
+margin_top = 21.1624
+margin_right = -20.1283
+margin_bottom = 221.162
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center][rainbow freq=0.4][wave amp=50 freq=4]
+——你的斗图小助手[/wave][/rainbow][/center]
+"
+text = "
+——你的斗图小助手
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="RichTextLabel" parent="Title"]
+anchor_right = 1.0
+margin_left = -10.1
+margin_top = -5.90501
+margin_right = -889.1
+margin_bottom = 167.095
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center][rainbow freq=0.4 sat=0.4][tornado radius=20  freq=2]
+
+武又带学2018软件工程概论
+ 没人说话小组 项目作业[/tornado][/rainbow][/center]
+"
+text = "
+
+武又带学2018软件工程概论
+ 没人说话小组 项目作业
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -571.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmojiArea" type="ScrollContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 44.0
+margin_right = -40.0
+margin_bottom = -39.0
+rect_min_size = Vector2( 1200, 0 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmojiGrid" type="GridContainer" parent="Panel/EmojiArea"]
+columns = 6
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
