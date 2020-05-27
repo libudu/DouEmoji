@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://font/DefaultDroid45.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/DroidSansFallback.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://font/DefaultDroid18.tres" type="DynamicFont" id=3]
+[ext_resource path="res://font/DefaultDroid30.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Panel.gd" type="Script" id=5]
+[ext_resource path="res://Emoji.tscn" type="PackedScene" id=6]
 [ext_resource path="res://script/PicGrid.gd" type="Script" id=7]
 [ext_resource path="res://Main.gd" type="Script" id=8]
 
@@ -12,11 +15,12 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 1, 1, 1, 0 )
-border_width_left = 50
-border_width_top = 50
-border_width_right = 50
-border_width_bottom = 50
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
 border_blend = true
+corner_detail = 4
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -70,10 +74,10 @@ __meta__ = {
 
 [node name="SubTitle" type="RichTextLabel" parent="Title"]
 anchor_right = 1.0
-margin_left = 535.871
-margin_top = 21.1624
-margin_right = -20.1283
-margin_bottom = 221.162
+margin_left = 532.94
+margin_top = 24.8306
+margin_right = -106.06
+margin_bottom = 224.831
 custom_fonts/normal_font = ExtResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
@@ -89,10 +93,10 @@ __meta__ = {
 
 [node name="Author" type="RichTextLabel" parent="Title"]
 anchor_right = 1.0
-margin_left = -10.1
-margin_top = -5.90501
-margin_right = -889.1
-margin_bottom = 167.095
+margin_left = 954.0
+margin_top = -30.0
+margin_right = -1.0
+margin_bottom = 143.0
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
@@ -116,12 +120,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -571.0
 custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GridContainer" type="GridContainer" parent="Panel"]
-columns = 2
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -145,3 +144,95 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AllEmojiButton" type="Button" parent="."]
+margin_left = -0.970062
+margin_top = 90.0
+margin_right = 123.03
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 4 )
+text = "所有表情"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypeEmojiButton" type="Button" parent="."]
+margin_left = 167.451
+margin_top = 90.0
+margin_right = 299.451
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 4 )
+text = "分类表情"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchEmojiButton" type="Button" parent="."]
+margin_left = 334.165
+margin_top = 90.0
+margin_right = 466.165
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 4 )
+text = "搜索表情"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.623529 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="ColorRect" parent="Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 353.0
+margin_top = 58.0
+margin_right = -411.0
+margin_bottom = -87.0
+color = Color( 0, 0, 0, 0.623529 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel2/Panel"]
+margin_left = 195.964
+margin_top = 28.0
+margin_right = 315.964
+margin_bottom = 68.0
+text = "表情预览"
+
+[node name="Label2" type="Label" parent="Panel2/Panel"]
+margin_left = 205.964
+margin_top = 258.811
+margin_right = 305.964
+margin_bottom = 298.811
+text = "关键词"
+
+[node name="Label3" type="Label" parent="Panel2/Panel"]
+margin_left = 220.126
+margin_top = 392.487
+margin_right = 280.126
+margin_bottom = 432.487
+text = "类型"
+
+[node name="Button" type="Button" parent="Panel2/Panel"]
+margin_left = 186.604
+margin_top = 477.702
+margin_right = 315.604
+margin_bottom = 546.702
+text = "确定"
+
+[node name="Emoji" parent="Panel2/Panel" instance=ExtResource( 6 )]
+margin_left = 155.083
+margin_top = 65.298
+margin_right = 355.083
+margin_bottom = 245.298

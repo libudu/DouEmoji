@@ -11,11 +11,11 @@ func search_dir(path:String, suffix_list := []) -> Array:
 		file_name = dir.get_next()
 		while file_name != "":
 			if suffix_list == []:
-				file_list.append(path + file_name)
+				file_list.append(file_name)
 			else:
 				for suffix in suffix_list:
 					if file_name.ends_with(suffix):
-						file_list.append(path + file_name)
+						file_list.append(file_name)
 						break
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -41,3 +41,14 @@ func load_image_from_path(path:String) -> ImageTexture:
 	var texture = ImageTexture.new()
 	texture.create_from_image(image)
 	return texture
+
+
+# 缩放一张Texture
+func scale_texture(old_texture:Texture, max_rect := Vector2(170,150)) -> Texture:
+	var image := old_texture.get_data()
+	var scale_vector := max_rect / image.get_size()
+	var scale := min(scale_vector.x, scale_vector.y)
+	image.resize(image.get_width() * scale, image.get_height() * scale)
+	var new_texture = ImageTexture.new()
+	new_texture.create_from_image(image)
+	return new_texture
