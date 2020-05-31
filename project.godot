@@ -12,10 +12,16 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Emoji",
 "language": "GDScript",
-"path": "res://script/Emoji.gd"
+"path": "res://scene/Emoji.gd"
+}, {
+"base": "GridContainer",
+"class": "EmojiGrid",
+"language": "GDScript",
+"path": "res://script/EmoijGrid.gd"
 } ]
 _global_script_class_icons={
-"Emoji": ""
+"Emoji": "",
+"EmojiGrid": ""
 }
 
 [application]

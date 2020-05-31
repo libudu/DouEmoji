@@ -1,13 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://font/DefaultDroid45.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/DroidSansFallback.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://font/DefaultDroid18.tres" type="DynamicFont" id=3]
 [ext_resource path="res://font/DefaultDroid30.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Panel.gd" type="Script" id=5]
-[ext_resource path="res://Emoji.tscn" type="PackedScene" id=6]
-[ext_resource path="res://script/PicGrid.gd" type="Script" id=7]
+[ext_resource path="res://script/AllEmojiPanel.gd" type="Script" id=5]
+[ext_resource path="res://scene/EmojiTexture.tscn" type="PackedScene" id=6]
+[ext_resource path="res://script/AllEmojiGrid.gd" type="Script" id=7]
 [ext_resource path="res://Main.gd" type="Script" id=8]
+[ext_resource path="res://script/SaveLoad.gd" type="Script" id=9]
+[ext_resource path="res://script/EmojiEditPage.gd" type="Script" id=10]
+[ext_resource path="res://script/SearchEmojiPanel.gd" type="Script" id=11]
+[ext_resource path="res://script/SearchEmojiGrid.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
@@ -29,6 +33,9 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SaveLoad" type="Node" parent="."]
+script = ExtResource( 9 )
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -114,7 +121,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="AllEmojiPanel" type="Panel" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -125,7 +133,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EmojiArea" type="ScrollContainer" parent="Panel"]
+[node name="EmojiArea" type="ScrollContainer" parent="AllEmojiPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 34.0
@@ -138,9 +146,101 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EmojiGrid" type="GridContainer" parent="Panel/EmojiArea"]
+[node name="AllEmojiGrid" type="GridContainer" parent="AllEmojiPanel/EmojiArea"]
 columns = 6
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypeEmojiPanel" type="Panel" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -571.0
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmojiArea" type="ScrollContainer" parent="TypeEmojiPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 44.0
+margin_right = -40.0
+margin_bottom = -39.0
+rect_min_size = Vector2( 1200, 0 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmojiGrid" type="GridContainer" parent="TypeEmojiPanel/EmojiArea"]
+columns = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchEmojiPanel" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -571.0
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrickSearchBox" type="CheckBox" parent="SearchEmojiPanel"]
+margin_left = 1006.68
+margin_top = 45.8232
+margin_right = 1154.68
+margin_bottom = 93.8232
+pressed = true
+text = "模糊搜索"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchEdit" type="LineEdit" parent="SearchEmojiPanel"]
+margin_left = 213.818
+margin_top = 41.2824
+margin_right = 723.818
+margin_bottom = 91.2824
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchButton" type="Button" parent="SearchEmojiPanel"]
+margin_left = 793.162
+margin_top = 39.8401
+margin_right = 888.162
+margin_bottom = 92.8401
+text = "搜索"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchArea" type="ScrollContainer" parent="SearchEmojiPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 132.0
+margin_right = -40.0
+margin_bottom = -39.0
+rect_min_size = Vector2( 1200, 0 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchEmojiGrid" type="GridContainer" parent="SearchEmojiPanel/SearchArea"]
+columns = 6
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -178,12 +278,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel2" type="Control" parent="."]
+[node name="EmojiEditPage" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Background" type="ColorRect" parent="Panel2"]
+[node name="Background" type="ColorRect" parent="EmojiEditPage"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.623529 )
@@ -191,7 +295,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="ColorRect" parent="Panel2"]
+[node name="ConfirmButton" type="Button" parent="EmojiEditPage"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="ColorRect" parent="EmojiEditPage"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 353.0
@@ -203,36 +315,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel2/Panel"]
+[node name="PreLabel" type="Label" parent="EmojiEditPage/Panel"]
 margin_left = 195.964
 margin_top = 28.0
 margin_right = 315.964
 margin_bottom = 68.0
 text = "表情预览"
 
-[node name="Label2" type="Label" parent="Panel2/Panel"]
-margin_left = 205.964
-margin_top = 258.811
-margin_right = 305.964
-margin_bottom = 298.811
+[node name="PreTexture" parent="EmojiEditPage/Panel" instance=ExtResource( 6 )]
+margin_left = -91.1387
+margin_top = -201.457
+margin_right = 78.8613
+margin_bottom = -51.4572
+
+[node name="KeywordLabel" type="Label" parent="EmojiEditPage/Panel"]
+margin_left = 207.192
+margin_top = 267.405
+margin_right = 307.192
+margin_bottom = 307.405
 text = "关键词"
 
-[node name="Label3" type="Label" parent="Panel2/Panel"]
-margin_left = 220.126
-margin_top = 392.487
-margin_right = 280.126
-margin_bottom = 432.487
-text = "类型"
+[node name="KeywordEdit" type="LineEdit" parent="EmojiEditPage/Panel"]
+margin_left = 71.2671
+margin_top = 332.277
+margin_right = 446.267
+margin_bottom = 382.277
+text = "龙图 猫 你妈 nmsl"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Button" type="Button" parent="Panel2/Panel"]
+[node name="TypeLabel" type="Label" parent="EmojiEditPage/Panel"]
+visible = false
+margin_left = 218.898
+margin_top = 376.526
+margin_right = 278.898
+margin_bottom = 416.526
+text = "类型"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmButton" type="Button" parent="EmojiEditPage/Panel"]
 margin_left = 186.604
 margin_top = 477.702
 margin_right = 315.604
 margin_bottom = 546.702
 text = "确定"
-
-[node name="Emoji" parent="Panel2/Panel" instance=ExtResource( 6 )]
-margin_left = 155.083
-margin_top = 65.298
-margin_right = 355.083
-margin_bottom = 245.298
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="SearchEmojiPanel/StrickSearchBox" to="SearchEmojiPanel" method="_on_StrickSearchBox_toggled"]
+[connection signal="pressed" from="SearchEmojiPanel/SearchButton" to="SearchEmojiPanel" method="start_search"]
+[connection signal="pressed" from="AllEmojiButton" to="." method="show_panel" binds= [ 1 ]]
+[connection signal="pressed" from="TypeEmojiButton" to="." method="show_panel" binds= [ 2 ]]
+[connection signal="pressed" from="SearchEmojiButton" to="." method="show_panel" binds= [ 3 ]]
+[connection signal="pressed" from="EmojiEditPage/ConfirmButton" to="EmojiEditPage" method="confirm_edit"]
+[connection signal="pressed" from="EmojiEditPage/Panel/ConfirmButton" to="EmojiEditPage" method="confirm_edit"]

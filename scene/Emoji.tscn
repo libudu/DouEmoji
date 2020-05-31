@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://image/hover.png" type="Texture" id=1]
+[ext_resource path="res://image/press.png" type="Texture" id=2]
+[ext_resource path="res://scene/EmojiTexture.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/Emoji.gd" type="Script" id=4]
+[ext_resource path="res://font/DefaultDroid18.tres" type="DynamicFont" id=5]
+
+[node name="Emoji" type="Control"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmojiButton" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 200, 200 )
+mouse_filter = 1
+button_mask = 3
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmojiTexture" parent="." instance=ExtResource( 3 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_bottom = 150.0
+
+[node name="KeywordLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -58.0
+margin_right = -1.52588e-05
+margin_bottom = -1.52588e-05
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -3
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="EmojiButton" to="." method="button_clicked"]
