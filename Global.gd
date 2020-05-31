@@ -4,11 +4,14 @@ var mouse_index:int
 
 var emoji_edit_page:Control
 
+
+var all_emoji_grid
+var search_emoji_grid
+
 # 缩略图引用
 var thumb_file_dir := {}
 # 表情文件的字典
 var emoji_file_dir := {}
-
 
 var picture_dir := {}
 var type_dir := {}

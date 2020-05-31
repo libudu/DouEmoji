@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://font/DefaultDroid45.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/DroidSansFallback.ttf" type="DynamicFontData" id=2]
@@ -12,6 +12,25 @@
 [ext_resource path="res://script/EmojiEditPage.gd" type="Script" id=10]
 [ext_resource path="res://script/SearchEmojiPanel.gd" type="Script" id=11]
 [ext_resource path="res://script/SearchEmojiGrid.gd" type="Script" id=12]
+[ext_resource path="res://test_image.jpg" type="Texture" id=13]
+[ext_resource path="res://Background.gd" type="Script" id=14]
+
+[sub_resource type="Animation" id=3]
+resource_name = "background"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -396, -48.116 ), Vector2( 0, -199.867 ) ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
@@ -37,9 +56,33 @@ __meta__ = {
 [node name="SaveLoad" type="Node" parent="."]
 script = ExtResource( 9 )
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+anims/background = SubResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+margin_left = -396.0
+margin_top = -48.116
+margin_right = 1391.0
+margin_bottom = 871.884
+texture = ExtResource( 13 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background2" type="ColorRect" parent="Background"]
+self_modulate = Color( 1, 1, 1, 0.901961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -6.10352e-05
 color = Color( 0.662745, 0.662745, 0.662745, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -122,7 +165,6 @@ __meta__ = {
 }
 
 [node name="AllEmojiPanel" type="Panel" parent="."]
-visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -185,6 +227,7 @@ __meta__ = {
 }
 
 [node name="SearchEmojiPanel" type="Panel" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

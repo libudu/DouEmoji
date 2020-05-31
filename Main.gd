@@ -1,7 +1,6 @@
 extends Control
 
 onready var save_load := $SaveLoad
-onready var emoji_grid := $AllEmojiPanel/EmojiArea/AllEmojiGrid
 
 onready var all_emoji_panel := $AllEmojiPanel
 onready var type_emoji_panel := $TypeEmojiPanel
@@ -13,10 +12,13 @@ var all_panel:Array
 func _ready():
 	Global.emoji_edit_page = $EmojiEditPage
 	
-	save_load.emoji_grid = emoji_grid
+	Global.all_emoji_grid = $AllEmojiPanel/EmojiArea/AllEmojiGrid
+	Global.search_emoji_grid = $SearchEmojiPanel/SearchArea/SearchEmojiGrid
+	
+	save_load.emoji_grid = Global.all_emoji_grid
 	# 必须先加载信息再加载表情包，否则加载表情包生成的信息可能被后加载的信息覆盖
 	save_load.load_info()
-	emoji_grid.load_all_emojis()
+	Global.all_emoji_grid.load_all_emojis()
 	print(Global.picture_dir)
 	
 	all_panel = [all_emoji_panel, type_emoji_panel, search_emoji_panel]
